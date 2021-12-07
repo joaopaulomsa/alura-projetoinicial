@@ -1,0 +1,95 @@
+.card-color-success {
+    color: #198553;
+}
+
+.card-color-warning {
+    color: #EEB407;
+}
+
+.card-color-danger {
+    color: #C6303E;
+}
+
+.card-color-info {
+    color: #0dcaf0;
+}
+
+.card-title-icon {
+    text-align: center;
+    font-size: 18px;
+    margin-top: -3px;
+}
+/*
+.cardExame.pc:hover{
+    cursor: pointer;
+}
+.cardExame.pc:hover > .rounded {
+    background: #3A6CA5!important;
+    display: block;
+}
+
+.cardExame.pc > .rounded {
+    overflow: hidden;
+    position: relative;
+}
+*/
+.lenteInfo{
+    position: absolute;
+    background: #3a6ca59d!important;
+    display: none;
+    width: 100%;
+    z-index: 9;
+}
+/*
+.cardExame.pc:hover .lenteInfo{
+    display: block;
+}
+*/
+.h6InfoLiberacao{
+    padding: 2px;
+    margin: 0;
+    text-align: center;
+}
+
+.card-title-iconHour{
+    margin-right: 3px;
+    font-size: 16px;
+}
+
+.examesHoraEntradaSaida{
+    font-size: 12px;
+    padding-left: 7px;
+}
+
+.card-title-icon.examesCheckLiberado{
+    font-size: 40px;
+    margin-top: 1px;
+}
+
+h5{
+    margin-left: 15px;  
+    font-size: 16px;
+    margin: 0 0 0 10px;
+}
+
+.painelChecklist h3{
+    font-size: 34px;
+}
+
+h5.h5Checklist{
+    font-size: 23px;
+}
+
+h6{
+    font-size: 14px;
+}
+
+p{
+    padding: 0;
+    margin: 0;
+}
+
+.cardExames{
+    -webkit-transition: width 2s, height 2s, -webkit-zoom 2s;
+    transition: width 2s, height 2s, zoom 2s;
+}
