@@ -50,6 +50,7 @@ class App extends Component {
       const refreshToken = localStorage.getItem('refreshToken')
     
       // console.log(refreshToken)
+      return true // LIVRE DE LOGIN
       
       if(!token || !refreshToken) return false
 
@@ -84,7 +85,7 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/">
+          <PrivateRoute exact path="/">
             <Container>
              <Col xs="12" className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
                   <p><img src={Logotipo} alt="Logotipo" className="img-fluid pt-2 animate__animated animate__bounce" style={{ maxWidth: '220px', margin: '5px' }} /></p>
@@ -115,14 +116,14 @@ class App extends Component {
                   </div>
               </Col>
             </Container>
-          </Route>
-          <Route exact path="/PainelChecklistCirurgias/:painel" children={ <PainelCirurgia/> } />
+          </PrivateRoute>
+          <PrivateRoute exact path="/PainelChecklistCirurgias/:painel" children={ <PainelCirurgia/> } />
           <PrivateRoute exact path="/PainelEmergenciaPA">
             <PainelEmergenciaPA card="PC" />
           </PrivateRoute>
-          <Route exact path="/PainelTVEmergenciaPA">
+          <PrivateRoute exact path="/PainelTVEmergenciaPA">
             <PainelEmergenciaPA card="TV" />
-          </Route>
+          </PrivateRoute>
           <Route exact path="/login" children={ <Login logotipo={Logotipo}/>}/>
           <Route>
             <Pagina404 />

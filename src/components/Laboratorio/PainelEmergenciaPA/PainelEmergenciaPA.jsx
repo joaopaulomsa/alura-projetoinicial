@@ -45,21 +45,21 @@ function PainelEmergenciaPA({card}) {
         return  "Invalid date" !== d?d:"Aguardando..."
     }
 
-    //setTimeout(function(){
-    //    window.location.reload(false)
-    //},60000)
+    setTimeout(function(){
+        window.location.reload(false)
+    },60000)
     
 
     return (
         <Container fluid style={{ height: window.innerHeight+'px'}}>
             <Row>
-                <Col xs={12} sm={1}>
+                <Col xs={12} sm={2}>
                     <Link to="/"><img src={Logotipo} alt="Logotipo" className="img-fluid pt-2" style={{ maxWidth: '120px', margin: '5px' }} /></Link>
                 </Col>
-                <Col xs={12} sm={10}>
+                <Col xs={12} sm={8}>
                     <h3 className="pt-2 animate__animated animate__bounce" style={{ textAlign: 'center', fontSize: '47px' }}>Painel ({card}) Emergência PA</h3>
                 </Col>
-                <Col sm={1} style={{ textAlign: 'right' }} className="d-none d-sm-block">
+                <Col sm={2} style={{ textAlign: 'right' }} className="d-none d-sm-block">
                     <Link to="/"><img src={Logotipo} alt="Logotipo" className="img-fluid pt-2" style={{ maxWidth: '120px', margin: '5px' }} /></Link>
                 </Col>
             </Row>

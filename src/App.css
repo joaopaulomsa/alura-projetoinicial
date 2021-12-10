@@ -36,7 +36,8 @@ a.btn-outline-primary{
 }
 
 .painelChecklist p, .painelChecklist h6{
- font-size: 22px;
+ font-size: 18px;
+ margin: 0;
   /*line-height: 26px;
   animation: blink-animation 1s steps(5, start) infinite;
   -webkit-animation: blink-animation 1s steps(5, start) infinite;*/

@@ -205,6 +205,10 @@ function PainelCirurgia() {
     if(isNotLoadingAmarelo !== null) statusLoadingTela.isNotLoadingAmarelo = isNotLoadingAmarelo.qtd 
     if(isNotLoadingVermelho !== null) statusLoadingTela.isNotLoadingVermelho = isNotLoadingVermelho.qtd 
 
+    // statusLoadingTela.isNotLoadingVerde = true   
+    // statusLoadingTela.isNotLoadingAmarelo = true
+    // statusLoadingTela.isNotLoadingVermelho = true 
+
     setTimeout(function(){
         window.location.reload(false)
     },60000)

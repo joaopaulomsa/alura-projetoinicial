@@ -27,23 +27,11 @@ function MyVerticallyCenteredModal(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="contained-modal-title-vcenter">
-             Atendimento Médico {props.atendimento}
+             {props.title}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        {
-          (dadosModal !== null) 
-          ? dadosModal.map(function(dados, index){
-            return( <Row key={index} >
-                <Col xs={12}>Tipo: {dados.tipo}</Col>
-                <Col xs={12}>Data Solicitação: <Moment format="DD/MM/YYYY à\s hh:MM:ss">{dados.data_solicitacao}</Moment></Col>
-                <Col xs={12}>Data Liberação: <Moment>{dados.data_liberacao}</Moment></Col>
-              </Row> )
-            })
-          : <Row>
-            <Col xs={12}>AGUARDANDO</Col>
-          </Row>
-        }
+          {props.children}
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={ props.onHide }>Fechar</Button>
@@ -58,12 +46,14 @@ const ModalHED = (props) => {
       <>  
         <MyVerticallyCenteredModal
           show={props.modalShow}
-          atendimento={props.atendimento}
+          title={props.title}
           onHide={() => {
               props.setModalShow(false)
             }
           }
-        />
+        >
+          {props.children}
+        </MyVerticallyCenteredModal>
       </>
     );
   }
