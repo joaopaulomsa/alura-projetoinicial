@@ -9,7 +9,7 @@ import CardTVEmergenciaPA from './CardTVEmergenciaPA';
 import CardPCEmergenciaPA from './CardPCEmergenciaPA';
 import jsonLoadingHealth from './lf30_editor_csk5d6ws.json'
 import Lottie from 'react-lottie';
-import ModalHED from '../../../hooks/useModal';
+import ModalDadosHED from '../../../hooks/useModalDados';
 import useApiApexEmergenvciaPA from '../../../hooks/useApiApexEmergenciaPA';
 
 const defaultOptions = {
@@ -28,39 +28,50 @@ function PainelEmergenciaPA({card}) {
     const [itensEmergencia, setItensEmergencia] = useState([])
     const [atendimentoModal, setAtendimentoModal] = useState(false)
     const [nroAtendimentoModal, setNroAtendimentoModal] = useState(undefined)
-    function abreModalInfoExames(atendimento){
+
+    let myTimeout = null;
+
+
+    function abreModalInfoExames(dados){
         setAtendimentoModal(true)
-        setNroAtendimentoModal(atendimento)
+        setNroAtendimentoModal(dados)
+
+        var id = window.setTimeout(function() {}, 0);
+
+        while (id--) {
+            window.clearTimeout(id); // will do nothing if no timeout with id is present
+        }
+
         //console.log('Abre Popup: '+atendimento)
+
     }
     
     useEffect(()=>{
         if(itensEmergencia.length === 0) {
             useApiApexEmergenvciaPA(setItensEmergencia)
+            if(myTimeout === null) setTimeout(function(){
+               window.location.reload(false)
+                
+            },30000)
         }
     
-   }, [itensEmergencia, setItensEmergencia])
+   }, [itensEmergencia, setItensEmergencia, myTimeout])
 
     Moment.globalFilter = (d) => {
         return  "Invalid date" !== d?d:"Aguardando..."
     }
 
-    setTimeout(function(){
-        window.location.reload(false)
-    },60000)
-    
-
     return (
         <Container fluid style={{ height: window.innerHeight+'px'}}>
             <Row>
                 <Col xs={12} sm={2}>
-                    <Link to="/"><img src={Logotipo} alt="Logotipo" className="img-fluid pt-2" style={{ maxWidth: '120px', margin: '5px' }} /></Link>
+                    <Link to="/"><img src={Logotipo} alt="Logotipo" className="img-fluid pt-2" style={{ maxWidth: '100px', margin: '5px' }} /></Link>
                 </Col>
                 <Col xs={12} sm={8}>
-                    <h3 className="pt-2 animate__animated animate__bounce" style={{ textAlign: 'center', fontSize: '47px' }}>Painel ({card}) Emergência PA</h3>
+                    <h3 className="pt-1 animate__animated animate__bounce" style={{ textAlign: 'center', fontSize: '42px' }}>Painel ({card}) Emergência PA</h3>
                 </Col>
                 <Col sm={2} style={{ textAlign: 'right' }} className="d-none d-sm-block">
-                    <Link to="/"><img src={Logotipo} alt="Logotipo" className="img-fluid pt-2" style={{ maxWidth: '120px', margin: '5px' }} /></Link>
+                    <Link to="/"><img src={Logotipo} alt="Logotipo" className="img-fluid pt-2" style={{ maxWidth: '100px', margin: '5px' }} /></Link>
                 </Col>
             </Row>
             <Row hidden={itensEmergencia.length > 0}>
@@ -86,7 +97,7 @@ function PainelEmergenciaPA({card}) {
                     })
                 }
             </Row>
-            <ModalHED modalShow={atendimentoModal} setModalShow={setAtendimentoModal} atendimento={nroAtendimentoModal}/>  
+            <ModalDadosHED modalShow={atendimentoModal} setModalShow={setAtendimentoModal} dados={nroAtendimentoModal}/>  
         </Container>        
     );
     

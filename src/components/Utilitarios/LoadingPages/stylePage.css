@@ -19,20 +19,7 @@
     font-size: 18px;
     margin-top: -3px;
 }
-
-#contained-modal-title-vcenter h5{
-    font-size: 28px;
-}
-
-.modal-title.h4{
-    display: inline-block;
-    width: 100%;
-}
-
-.tableExamesApex td {
-    font-size: 12px;
-}
-
+/*
 .cardExame.pc:hover{
     cursor: pointer;
 }
@@ -45,7 +32,7 @@
     overflow: hidden;
     position: relative;
 }
-
+*/
 .lenteInfo{
     position: absolute;
     background: #3a6ca59d!important;
@@ -53,15 +40,11 @@
     width: 100%;
     z-index: 9;
 }
-
-.modal-footer {
-    border-top: none;
-}
-
+/*
 .cardExame.pc:hover .lenteInfo{
     display: block;
 }
-
+*/
 .h6InfoLiberacao{
     padding: 2px;
     margin: 0;
@@ -85,8 +68,7 @@
 
 h5{
     margin-left: 15px;  
-    font-size: 14px;
-    line-height: 20px;
+    font-size: 16px;
     margin: 0 0 0 10px;
 }
 
@@ -99,7 +81,7 @@ h5.h5Checklist{
 }
 
 h6{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 p{

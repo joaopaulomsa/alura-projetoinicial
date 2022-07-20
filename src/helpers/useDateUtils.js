@@ -18,4 +18,20 @@ function compareDateSqlString(date1,date2){
     return retorno;
 }
 
-export default compareDateSqlString;
+function retornaDataYY(date){
+    if(date === null || date === undefined) return ''
+
+    let dateArray = date.split('/')
+
+    if(dateArray.length !== 3) return ''
+
+    if(dateArray[2].length !== 4) return ''
+
+    return dateArray[0]+'/'+dateArray[1]+'/'+dateArray[2].substring(dateArray[2].length - 2)
+
+}
+
+export {
+    compareDateSqlString,
+    retornaDataYY
+}

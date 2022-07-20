@@ -3,7 +3,7 @@ import React, { useEffect, useState }  from 'react';
 import { useParams } from "react-router-dom";
 import { Alert, Col, Container, Row, Spinner, Toast, ToastBody, ToastHeader } from 'reactstrap';
 import useApiApex from '../../hooks/useApiApex';
-import { AirlineSeatFlat, CheckCircleOutline, CleanHands, ExitToApp, Brightness1, BusinessCenterSharp, TrendingUpRounded } from '@mui/icons-material';
+import { AirlineSeatFlat, CheckCircleOutline, CleanHands, ExitToApp, Brightness1 } from '@mui/icons-material';
 import Logotipo from '../../assets/images/logo.png';
 import MedicalServicesRoundedIcon from '@mui/icons-material/MedicalServicesRounded';
 import { Link } from 'react-router-dom';
@@ -93,7 +93,7 @@ function PainelCirurgia() {
     //AMARELO - Antes do Início da Anestesia ( 1903 )
     const [resultadosAmarelos, setResultadosAmarelos] = useState({
         res15653: -1, res15657: -1, res15730: -1, res15733: -1, res15737: -1, res15738: -1, 
-        res15742: -1, res15743: -1, res15751: -1, res15752: -1, res15754: -1, res15755: -1,
+        res15742: -1, res15743: -1, res15751: -1, res15752: -1, res15754: -1, res15755: -1, res17050: '',
     })
 
     const [resultadosAmarelos15653, setResultadosAmarelos15653] = useState(-1) 
@@ -108,11 +108,12 @@ function PainelCirurgia() {
     const [resultadosAmarelos15752, setResultadosAmarelos15752] = useState(-1) 
     const [resultadosAmarelos15754, setResultadosAmarelos15754] = useState(-1) 
     const [resultadosAmarelos15755, setResultadosAmarelos15755] = useState(-1)
+    const [resultadosAmarelos17050, setResultadosAmarelos17050] = useState(-1)
 
     if(itemsApex !== null) dados = {...itemsApex}
     //VERDE - Antes da Incisão Cirúrgica ( 1945 )
     const [resultadosVerdes, setResultadosVerdes] = useState({
-        res15787: -1, res15761: -1, res15762: -1, res15794: -1, res15810: -1, res15822: -1, res15823: -1,
+        res15787: -1, res15761: -1, res15762: -1, res15794: -1, res15810: -1, res15822: -1, res15823: -1, res16920: ''
     })
 
     //VERDE - Antes da Incisão Cirúrgica ( 1945 )
@@ -123,11 +124,24 @@ function PainelCirurgia() {
     const [resultadosVerdes15810, setResultadosVerdes15810] = useState(null)
     const [resultadosVerdes15822, setResultadosVerdes15822] = useState(null)
     const [resultadosVerdes15823, setResultadosVerdes15823] = useState(null)
+    const [resultadosVerdes16920, setResultadosVerdes16920] = useState(null)
 
     useEffect(()=>{
         // eslint-disable-next-line react-hooks/rules-of-hooks
         if(itemsApex === null) {
             useApiApex("tipo=painel_cirurgia/dados/"+painel,false, setItemsApex, true)
+            /*setItemsApex({
+                "paciente": "Maria Emilia Berg da Trindade",
+                "cirurgiao": "Carlos Eduardo da Silva",
+                "anestesista": "Rubens Devildos Trindade",
+                "instrumentador": "Laura Cristiane Lopes Tâmara",
+                "circulante": "Carmem Lucia da Cunha Alencastro de Farias",
+                "enfermeiro": "Joseani de Oliveira da Silva",
+                "data_cirurgia": "03/03/2022",
+                "hora_cirurgia": "07:30:00",
+                "procedimento": "Microcirurgia Vascular Intracraniana",
+                "cirurgia": 247450
+            })*/
         }else if(itemsApex !== undefined && itemsApex.cirurgia !== undefined && nrResultadoCirurgia === null){
             setNrResultadoCirurgia(itemsApex.cirurgia)
 
@@ -148,6 +162,7 @@ function PainelCirurgia() {
             useApiApex("tipo=painel_cirurgia/resultados/1903/"+itemsApex.cirurgia+"/15752", false, setResultadosAmarelos15752, true)
             useApiApex("tipo=painel_cirurgia/resultados/1903/"+itemsApex.cirurgia+"/15754", false, setResultadosAmarelos15754, true)
             useApiApex("tipo=painel_cirurgia/resultados/1903/"+itemsApex.cirurgia+"/15755", false, setResultadosAmarelos15755, true)
+            useApiApex("tipo=painel_cirurgia/resultados_txt/1903/"+itemsApex.cirurgia+"/17050", false, setResultadosAmarelos17050, true)
           
             //VERDE - Antes da Incisão Cirúrgica ( 1945 )
             useApiApex("tipo=painel_cirurgia/resultados/1945/"+itemsApex.cirurgia+"/15787", false, setResultadosVerdes15787, true)
@@ -157,6 +172,7 @@ function PainelCirurgia() {
             useApiApex("tipo=painel_cirurgia/resultados/1945/"+itemsApex.cirurgia+"/15810", false, setResultadosVerdes15810, true)
             useApiApex("tipo=painel_cirurgia/resultados/1945/"+itemsApex.cirurgia+"/15822", false, setResultadosVerdes15822, true)
             useApiApex("tipo=painel_cirurgia/resultados/1945/"+itemsApex.cirurgia+"/15823", false, setResultadosVerdes15823, true)
+            useApiApex("tipo=painel_cirurgia/resultados_txt/1945/"+itemsApex.cirurgia+"/16920", false, setResultadosVerdes16920, true)
            
             //VERMELHO - Antes da Saída da Sala ( 1964 )
             useApiApex("tipo=painel_cirurgia/resultados/1964/"+itemsApex.cirurgia+"/15840", false, setResultadosVermelho15840, true)
@@ -169,7 +185,7 @@ function PainelCirurgia() {
 
     }, [nrResultadoCirurgia, painel, itemsApex, setItemsApex, setNrResultadoCirurgia,
         setResultadosVermelho15840,setResultadosVermelho15841,setResultadosVermelho15842,setResultadosVermelho15843,setResultadosVermelho15844,
-        setResultadosVerdes15787,setResultadosVerdes15761,setResultadosVerdes15762,setResultadosVerdes15794,setResultadosVerdes15810,setResultadosVerdes15822,setResultadosVerdes15823,
+        setResultadosVerdes15787,setResultadosVerdes15761,setResultadosVerdes15762,setResultadosVerdes15794,setResultadosVerdes15810,setResultadosVerdes15822,setResultadosVerdes15823, setResultadosVerdes16920, setResultadosAmarelos17050,
         setResultadosAmarelos15653, setResultadosAmarelos15657,setResultadosAmarelos15730, setResultadosAmarelos15733,setResultadosAmarelos15737, setResultadosAmarelos15738, setResultadosAmarelos15742, setResultadosAmarelos15743, setResultadosAmarelos15751, setResultadosAmarelos15752, setResultadosAmarelos15754, setResultadosAmarelos15755,
         setIsNotLoadingAmarelo, setIsNotLoadingVerde, setIsNotLoadingVermelho, isNotLoadingAmarelo, isNotLoadingVerde, isNotLoadingVermelho])
 
@@ -187,6 +203,7 @@ function PainelCirurgia() {
     if(resultadosVerdes15810 !== null) resultadosVerdes.res15810 = resultadosVerdes15810.qtd
     if(resultadosVerdes15822 !== null) resultadosVerdes.res15822 = resultadosVerdes15822.qtd
     if(resultadosVerdes15823 !== null) resultadosVerdes.res15823 = resultadosVerdes15823.qtd
+    if(resultadosVerdes16920) resultadosVerdes.res16920 = resultadosVerdes16920.qtd_long
 
     if(resultadosAmarelos15653 !== null) resultadosAmarelos.res15653 = resultadosAmarelos15653.qtd 
     if(resultadosAmarelos15657 !== null) resultadosAmarelos.res15657 = resultadosAmarelos15657.qtd
@@ -200,18 +217,19 @@ function PainelCirurgia() {
     if(resultadosAmarelos15752 !== null) resultadosAmarelos.res15752 = resultadosAmarelos15752.qtd 
     if(resultadosAmarelos15754 !== null) resultadosAmarelos.res15754 = resultadosAmarelos15754.qtd 
     if(resultadosAmarelos15755 !== null) resultadosAmarelos.res15755 = resultadosAmarelos15755.qtd
+    if(resultadosAmarelos17050) resultadosAmarelos.res17050 = resultadosAmarelos17050.qtd
 
     if(isNotLoadingVerde !== null) statusLoadingTela.isNotLoadingVerde = isNotLoadingVerde.qtd 
     if(isNotLoadingAmarelo !== null) statusLoadingTela.isNotLoadingAmarelo = isNotLoadingAmarelo.qtd 
     if(isNotLoadingVermelho !== null) statusLoadingTela.isNotLoadingVermelho = isNotLoadingVermelho.qtd 
 
-    // statusLoadingTela.isNotLoadingVerde = true   
-    // statusLoadingTela.isNotLoadingAmarelo = true
-    // statusLoadingTela.isNotLoadingVermelho = true 
+    //statusLoadingTela.isNotLoadingVerde = true   
+    //statusLoadingTela.isNotLoadingAmarelo = true
+    //statusLoadingTela.isNotLoadingVermelho = true 
 
-    setTimeout(function(){
-        window.location.reload(false)
-    },60000)
+    //setTimeout(function(){
+        //window.location.reload(false)
+    //},60000)
 
     return (
         <Container fluid style={{ height: window.innerHeight-275+'px' }} className="painelChecklist">
@@ -289,6 +307,7 @@ function PainelCirurgia() {
                                             <p>- Identidade, Procedimento e Sítio Cirúrgico</p>
                                             <p>- Consentimento Informado Assinado e na Pasta</p>
                                             <p className="mt-2">{retornaIconeCheckNaoCheck(resultadosAmarelos.res15657)} Sítio Cirúrgico Demarcado/Não Procede</p>
+                                            <p className="pCheckListTxt">Lateralidade: {resultadosAmarelos.res17050}</p>
                                             <p>{retornaIconeCheckNaoCheck(resultadosAmarelos.res15730)} Revisão dos Equipamentos de Anestesia</p>
                                             <p>{retornaIconeCheckNaoCheck(resultadosAmarelos.res15733)} Oximetro de Pulso Instalado e Funcionando</p>
                                         </Alert>
@@ -355,6 +374,7 @@ function PainelCirurgia() {
                                             <h6 className="pt-2">{retornaIconeCheckNaoCheck(resultadosVerdes.res15810)} Previsão de Eventos Críticos</h6>
                                             <p><strong>Cirurgião</strong></p>
                                             <p>- Pontos Críticos</p>
+                                            <p className="pCheckListTxt">{resultadosVerdes.res16920}</p>
                                             <p>- Duração da Cirurgia</p>
                                             <p><strong>Anestesiologista</strong></p>
                                             <p>- Se há Algum Problema Específico com o Paciente</p>

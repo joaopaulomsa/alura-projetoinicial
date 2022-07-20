@@ -17,6 +17,14 @@ body, #root{
   background: #FFDAEC!important
 }
 
+.bg-cardCinza {
+  background-color: #bbbbbb;
+}
+
+.bg-darkDuplo {
+  background-color: #000000;
+}
+
 .bg-dangerRosa .toast{
   background: none
 }
@@ -33,6 +41,19 @@ a.btn-outline-primary{
 
 .dadosCirurgia div{
   font-size: 20px;
+}
+
+.bolaClass{
+  border-radius: 20px;
+}
+
+.pCheckListTxt{
+  display: block;
+  width: 100%;
+  font-size: 16px!important;
+  padding: 6px;
+  background: #ffffffad;
+  min-height: 36px;
 }
 
 .painelChecklist p, .painelChecklist h6{

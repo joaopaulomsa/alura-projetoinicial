@@ -7,7 +7,7 @@ import jsonLaboratorioAnimationExamesReady from './lf20_pwppxjbo.json'
 import './stylePage.css'
 import { Animated } from "react-animated-css";
 
-import compareDateSqlString from "../../../hooks/useDateUtils";
+import compareDateSqlString from "../../../helpers/useDateUtils";
 import Moment from "react-moment";
 import moment from "moment";
 

@@ -1,5 +1,6 @@
 import moment from "moment"
-import compareDateSqlString from "./useDateUtils";
+import { compareDateSqlString } from "../helpers/useDateUtils";
+import { retornaStatusUx } from "../helpers/useStringUtils";
 
 function compareDadosStringTrueFalse(d1,d2){
 
@@ -59,7 +60,11 @@ function retornaInfoLiberacao(dadosAtendEx,dadosGerais){
 
   let dataLiberado = (dadosAtendimentoExames.liberado) ? dataAtual : dataAntiga
 
-  dadosAtendimentoExames.uxInfo = retornaUxInfo(dataLiberado,dadosAtendimentoExames.liberado, dadosGerais.data_agora)      
+  dadosAtendimentoExames.uxInfo = retornaUxInfo(dataLiberado,dadosAtendimentoExames.liberado, dadosGerais.data_agora)   
+  
+  if(dadosAtendimentoExames.imagem === null && dadosAtendimentoExames.rx === null && dadosAtendimentoExames.laboratorio === null) 
+    dadosAtendimentoExames.uxInfo.orderItem = (retornaStatusUx(dadosGerais.ie_status).texto === "Em Atendimento")? -1:-2;
+    if(dadosGerais.ie_restricao === 'S') dadosAtendimentoExames.uxInfo.orderItem = -3
   
   return dadosAtendimentoExames
 }
@@ -78,7 +83,7 @@ function retornaUxInfo(data,liberado,dataAtual){
   let order = (!liberado)?Math.floor(d.asHours()):9999
   let cssStatus = retornaInfoCss(order)
   let tempo = ((Math.floor(d.asHours()) !== 0 ) ? Math.floor(d.asHours()) +'h ':'') + ((moment.utc(momentoSobtraido).format("mm") !== '00' ) ? moment.utc(momentoSobtraido).format("mm")+'min': '')
-  return { texto: ((liberado)?'Liberado à ':'Aguardando à ')+tempo, cssStatus: cssStatus, orderItem: order }
+  return { texto: ((liberado)?'':'Aguardando à ')+tempo, cssStatus: cssStatus, orderItem: order }
 }
 
 function retornaInfoCss(parametro) {
